@@ -211,5 +211,6 @@ fetch("data.json")
 // --- Audio effet sur hover joueur (optionnel, nécessite hover.mp3) ---
 // const audio = new Audio('hover.mp3');
 // document.addEventListener('mouseover', function(e) {
-//   if (e.target.classList.contains('player')) audio.play();
+//   if (e.target.classList.contains('player')) audio.play(); ffff
 // });
+
