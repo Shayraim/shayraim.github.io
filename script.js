@@ -1,3 +1,16 @@
+// --- Couleurs par tier pour le graphique ---
+const tierColors = {
+  "Greatest players in YBA history": "#ffd700",
+  "SSS (The Apex Predators)": "#ff5733",
+  "SS": "#ff9800",
+  "S+": "#00bcd4",
+  "S": "#4caf50",
+  "A+": "#00bcd4",
+  "A": "#a259ff",
+  "B": "#43a047",
+  "C": "#29b6f6",
+  "D": "#616161"
+};
 
 // --- Variables globales ---
 let allData = {};
@@ -26,7 +39,14 @@ function renderTierList(data, search = "", tierFilter = "all") {
 
   // Filtrage par tier
   if (tierFilter !== "all") {
-    if (data[tierFilter]) filteredData[tierFilter] = data[tierFilter];
+    if (data[tierFilter]) {
+      filteredData[tierFilter] = data[tierFilter];
+    } else {
+      console.error('Tier non trouvé dans les données :', tierFilter, Object.keys(data));
+      // Affiche un message dans la page si le tier n'existe pas
+      container.innerHTML = `<div style='color:red;font-weight:bold;padding:2em;'>Tier "${tierFilter}" not found in data. Check data-tier attributes and JSON keys.</div>`;
+      return;
+    }
   } else {
     filteredData = { ...data };
   }
@@ -100,24 +120,54 @@ function renderChart(data) {
   const ctx = document.getElementById('tierChart').getContext('2d');
   const labels = Object.keys(data);
   const values = labels.map(tier => data[tier].length);
-  if (window.tierChartInstance) window.tierChartInstance.destroy();
-  window.tierChartInstance = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Players per Tier',
-        data: values,
-        backgroundColor: '#ffcc00',
-        borderColor: '#232526',
-        borderWidth: 2
-      }]
-    },
-    options: {
-      plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true } }
-    }
-  });
+    if (window.tierChartInstance) window.tierChartInstance.destroy();
+    window.tierChartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          label: 'Players per Tier',
+          data: values,
+          backgroundColor: Object.keys(data).map(tier => tierColors[tier] || '#888'),
+          borderRadius: 10,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: false
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: getComputedStyle(document.body).getPropertyValue('--text-color') || '#fff',
+              font: {
+                size: 22,
+                family: 'Montserrat',
+                weight: 700
+              }
+            }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: {
+              color: getComputedStyle(document.body).getPropertyValue('--text-color') || '#fff',
+              font: {
+                size: 22,
+                family: 'Montserrat',
+                weight: 700
+              }
+            }
+          }
+        }
+      }
+    });
 }
 
 // --- Dark/Light mode ---
