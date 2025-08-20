@@ -85,6 +85,7 @@ h1 {
 .tier-splus { background: linear-gradient(90deg, #7f7fd5 0%, #86a8e7 100%); color: #fff; border: 2.5px solid #e0e7ff; }
 .tier-s { background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%); color: #fff; border: 2.5px solid #b2f7ef; }
 .tier-aplus { background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%); color: #3a2a00; border: 2.5px solid #fffbe6; }
+.tier-a { background: linear-gradient(90deg, #f6d365 0%, #fda085 100%); color: #2d2300; border: 2.5px solid #fffbe6; }
 .tier-b { background: linear-gradient(90deg, #f857a6 0%, #ff5858 100%); color: #fff; border: 2.5px solid #ffd6e0; }
 .tier-c { background: linear-gradient(90deg, #9796f0 0%, #fbc7d4 100%); color: #2d2350; border: 2.5px solid #e0e7ff; }
 .tier-d { background: linear-gradient(90deg, #232526 0%, #414345 100%); color: #fff; border: 2.5px solid #444; }
