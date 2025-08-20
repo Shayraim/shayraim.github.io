@@ -29,6 +29,9 @@ fetch("data.json")
         case "A+":
           tierClass = "tier-aplus";
           break;
+        case "A":
+            tierClass = "tier-a";
+          break;
         case "B":
           tierClass = "tier-b";
           break;
