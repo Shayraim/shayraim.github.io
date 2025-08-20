@@ -1,3 +1,4 @@
+
 // --- Variables globales ---
 let allData = {};
 let currentTier = 'all';
@@ -99,9 +100,7 @@ function renderChart(data) {
   const ctx = document.getElementById('tierChart').getContext('2d');
   const labels = Object.keys(data);
   const values = labels.map(tier => data[tier].length);
-
   if (window.tierChartInstance) window.tierChartInstance.destroy();
-
   window.tierChartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -115,24 +114,8 @@ function renderChart(data) {
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false, // permet d'utiliser la taille CSS
-      plugins: { 
-        legend: { display: false },
-        tooltip: {
-          titleFont: { size: 16 },
-          bodyFont: { size: 14 }
-        }
-      },
-      scales: { 
-        x: {
-          ticks: { font: { size: 14 } }
-        },
-        y: { 
-          beginAtZero: true,
-          ticks: { font: { size: 14 } }
-        }
-      }
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
     }
   });
 }
@@ -174,17 +157,6 @@ fetch("data.json")
       });
     });
   });
-
-// --- Styles spécifiques pour le canvas ---
-const style = document.createElement('style');
-style.innerHTML = `
-  #tierChart {
-    width: 100% !important;
-    max-width: 900px;
-    height: 500px !important; /* taille grande */
-  }
-`;
-document.head.appendChild(style);
 
 // --- Audio effet sur hover joueur (optionnel, nécessite hover.mp3) ---
 // const audio = new Audio('hover.mp3');
