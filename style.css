@@ -1,3 +1,45 @@
+/* --- Filtre boutons custom --- */
+.filter-btn {
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 22px !important;
+  min-width: 90px;
+  padding: 8px 22px;
+  font-size: 1.08rem;
+  margin: 4px 6px;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  background: #f3f4f8;
+  color: #232526;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.filter-btn i {
+  font-size: 1.1em;
+}
+.filter-btn.active, .filter-btn:focus {
+  background: linear-gradient(90deg, #a259ff 0%, #ffcc00 100%);
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(162,89,255,0.13);
+  transform: scale(1.07);
+  border: none;
+}
+.filter-btn:hover {
+  background: #ffcc00;
+  color: #232526;
+  box-shadow: 0 2px 12px rgba(255,204,0,0.13);
+  transform: scale(1.04);
+}
+@media (max-width: 600px) {
+  .filter-btn {
+    font-size: 0.98rem;
+    padding: 7px 10px;
+    min-width: 70px;
+  }
+}
 /* --- Bootstrap & Responsive --- */
 .container {
   max-width: 900px;
@@ -50,13 +92,19 @@
   border-radius: 18px;
   margin-top: 18px;
   padding: 8px;
-  width: 100% !important;
+  width: 100%;
   max-width: 900px;
-  min-height: 340px;
-  height: 340px !important;
+  height: auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  #tierChart {
+    max-width: 100vw;
+    min-width: 0;
+  }
 }
 
 /* --- About Section --- */
@@ -233,8 +281,21 @@ body.light-mode .highlight {
 
 /* --- Hover.css sur .player --- */
 .player {
-  /* ...existing code... */
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(34,34,34,0.18);
+  font-size: 14px;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.08);
   cursor: pointer;
+  transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.player:hover, .player:focus {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.12);
+  z-index: 2;
 }
 
 /* --- Font Awesome icônes dans les titres --- */
